@@ -1,14 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../tests/fixtures/app.fixture';
+import { existingUser } from './pom/data/users';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Проверка приветствия авторизованного пользователя по login', async ({
+  homePage,
+  authModal,
+}) => {
+  await homePage.openHomePage();
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
-
-test('has title123', async ({ page }) => {
-  await page.goto('https://www.demoblaze.com/index.html');
-
-  await page.getByRole('link', { name: 'Phones' }).click();
+  await authModal.logInStore(existingUser.login, existingUser.password);
+  await authModal.checkAuthorizedUser(existingUser.login);
 });
