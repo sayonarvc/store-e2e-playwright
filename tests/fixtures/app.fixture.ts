@@ -2,11 +2,18 @@
 import { test as base } from '@playwright/test';
 import { AuthModal } from '../pom/pages/AuthModal';
 import { HomePage } from '../pom/pages/HomePage';
+import path from 'path';
+import process from 'process';
 
+export const authFile = path.join(process.cwd(), 'playwright/.auth/exsisting-user.json');
 // Declare the types of your fixtures.
 type MyFixtures = {
   homePage: HomePage;
   authModal: AuthModal;
+};
+
+type AppOptions = {
+  storageState: string | undefined;
 };
 
 // Extend base test by providing "todoPage" and "settingsPage".
@@ -22,5 +29,8 @@ const appTest = base.extend<MyFixtures>({
   },
 });
 
-export const test = appTest;
+export const NotAuthorizedUser = appTest;
+export const AuthorizedUser = appTest.extend<AppOptions>({
+  storageState: authFile,
+});
 export { expect } from '@playwright/test';
