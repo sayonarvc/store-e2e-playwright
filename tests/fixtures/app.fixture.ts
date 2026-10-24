@@ -5,7 +5,7 @@ import { HomePage } from '../pom/pages/HomePage';
 import path from 'path';
 import process from 'process';
 
-export const authFile = path.join(process.cwd(), 'playwright/.auth/exsisting-user.json');
+export const authFile = path.join(process.cwd(), 'playwright/.auth/existing-user.json');
 // Declare the types of your fixtures.
 type MyFixtures = {
   homePage: HomePage;
