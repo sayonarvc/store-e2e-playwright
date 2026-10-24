@@ -1,5 +1,5 @@
-import { test } from '../tests/fixtures/app.fixture';
-import { existingUser } from './pom/data/users';
+import { AuthorizedUser as test } from '../fixtures/app.fixture';
+import { existingUser } from '../pom/data/users';
 
 test('Проверка приветствия авторизованного пользователя по login', async ({
   homePage,
@@ -7,6 +7,5 @@ test('Проверка приветствия авторизованного п�
 }) => {
   await homePage.openHomePage();
 
-  await authModal.logInStore(existingUser.login, existingUser.password);
   await authModal.checkAuthorizedUser(existingUser.login);
 });
